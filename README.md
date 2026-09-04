@@ -1,4 +1,4 @@
-# Merchant DNA
+# Merchant DNA | AI-Powered Cross-Merchant Fraud Intelligence
 
 > **Cross-merchant fraud intelligence for payment platforms — behavioral scoring and network analysis that catch what single-merchant tools structurally can't see.**
 
