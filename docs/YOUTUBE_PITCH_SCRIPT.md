@@ -20,7 +20,7 @@
   5. Live mule burst and syndicate expansion simulations
   6. Out-of-sample holdout benchmarks (97.2% Precision, 95.1% Ring Detection) and honest limitations
 
-  🔗 GitHub Repository: https://github.com/[your-repo]/merchant-dna
+  🔗 GitHub Repository: https://github.com/Bunny1089/Mentor-DNA.git
   📊 Full Technical Report: docs/MERCHANT_DNA_EXECUTIVE_REPORT.pdf
   ```
 * **YouTube Tags:** `FraudDetection, PaymentGateway, Razorpay, GraphAnalytics, MachineLearning, Fintech, NetworkX, Cytoscape, AIinFintech, RiskIntelligence, FraudPrevention`
