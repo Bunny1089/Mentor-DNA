@@ -1,0 +1,146 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --bg: #14161B;
+  --panel: #1C1F26;
+  --panel-raised: #20232B;
+  --text: #E8E6DE;
+  --muted: #8B8F98;
+  --dim: #5A5E68;
+  --hairline: #2A2D35;
+  --low: #4B7A6F;
+  --medium: #B8862E;
+  --high: #A83D3D;
+  --cyan-accent: #0284C7;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code, kbd, samp, pre, .font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.font-serif {
+  font-family: 'Fraunces', Georgia, serif;
+}
+
+/* Custom Analytical Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--hairline);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dim);
+}
+
+/* Restrained Orchestrated Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.stagger-breadcrumb {
+  opacity: 0;
+  animation: fadeIn 0.4s var(--ease) 0s forwards;
+}
+
+.stagger-summary {
+  opacity: 0;
+  animation: fadeIn 0.5s var(--ease) 0.1s forwards;
+}
+
+.stagger-tabs {
+  opacity: 0;
+  animation: fadeIn 0.5s var(--ease) 0.2s forwards;
+}
+
+.stagger-panel {
+  opacity: 0;
+  animation: fadeIn 0.5s var(--ease) 0.28s forwards;
+}
+
+.stagger-actions {
+  opacity: 0;
+  animation: fadeIn 0.5s var(--ease) 0.35s forwards;
+}
+
+/* Tab Cross-Fade Transition */
+.tab-content-enter {
+  opacity: 0;
+  animation: fadeIn 0.25s var(--ease) forwards;
+}
+
+/* Progressive Disclosure Smooth Expand/Collapse */
+.disclosure-container {
+  transition: max-height 0.35s var(--ease), opacity 0.3s var(--ease);
+}
+
+/* Graph Canvas Line and Node Animations */
+.graph-canvas svg .node {
+  opacity: 0;
+}
+.graph-canvas svg .edge {
+  stroke-dasharray: 120;
+  stroke-dashoffset: 120;
+}
+.graph-canvas.revealed svg .edge {
+  animation: drawLine 0.5s var(--ease) forwards;
+}
+.graph-canvas.revealed svg .node {
+  animation: popIn 0.35s var(--ease) forwards;
+}
+
+/* Cytoscape Container */
+.cytoscape-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #14161B;
+  background-image: 
+    radial-gradient(rgba(42, 45, 53, 0.6) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
