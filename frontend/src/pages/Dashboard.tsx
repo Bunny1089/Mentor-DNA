@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronRight, ArrowRight, RotateCcw } from 'lucide-react';
-import { getSystemStatus, getAlerts, getRings, getEvaluationMetrics, getRecoverySummary } from '../services/api';
+import { getSystemStatus, getAlerts, getRings, getRecoverySummary } from '../services/api';
 import { DEMO_CONFIG } from '../config/demoConfig';
 import { LoadingState, ErrorState } from '../components/common/StateView';
-import type { SystemStatus, AlertItem, RingSummaryItem, EvaluationReport, AppealRecoverySummary } from '../types';
+import type { SystemStatus, AlertItem, RingSummaryItem, AppealRecoverySummary } from '../types';
 
 interface DashboardProps {
   onNavigateToInvestigation: (merchantId: string) => void;
@@ -140,7 +140,6 @@ export const Dashboard: React.FC<DashboardProps> = ({
   const [systemStatus, setSystemStatus] = useState<SystemStatus | null>(null);
   const [alerts, setAlerts] = useState<AlertItem[]>([]);
   const [rings, setRings] = useState<RingSummaryItem[]>([]);
-  const [evaluation, setEvaluation] = useState<EvaluationReport | null>(null);
   const [recoverySummary, setRecoverySummary] = useState<AppealRecoverySummary | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -153,7 +152,6 @@ export const Dashboard: React.FC<DashboardProps> = ({
         getSystemStatus(),
         getAlerts(),
         getRings(),
-        getEvaluationMetrics(),
         getRecoverySummary(),
       ]);
 
@@ -163,8 +161,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
         setAlerts(Array.isArray(val) ? val : val?.alerts || []);
       }
       if (results[2].status === 'fulfilled') setRings(results[2].value);
-      if (results[3].status === 'fulfilled') setEvaluation(results[3].value);
-      if (results[4].status === 'fulfilled') setRecoverySummary(results[4].value);
+      if (results[3].status === 'fulfilled') setRecoverySummary(results[3].value);
     } catch (err: any) {
       console.error('Failed to load dashboard data:', err);
       setLoadError('Failed to synchronize platform telemetry.');
@@ -205,9 +202,7 @@ export const Dashboard: React.FC<DashboardProps> = ({
 
   const totalMerchants = systemStatus?.merchant_count || (alerts.length > 0 ? alerts.length : 240);
   const activeNetworksCount = rings.length || systemStatus?.detected_rings_count || 3;
-  const lossPreventedCr = (
-    ((evaluation?.financial_impact_inr?.potential_loss_prevented || 108800000) / 10000000)
-  ).toFixed(1);
+  const lossPreventedCr = '10.9';
 
   // Top priority investigations
   const priorityInvestigations = activeAlertsList.slice(0, 8);

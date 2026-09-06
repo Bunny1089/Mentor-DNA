@@ -32,6 +32,7 @@ class ModelEvaluator:
     ):
         self.ds = datastore
         self.engine = engine
+        self._cache: Dict[float, Dict[str, Any]] = {}
 
     def _evaluate_dataset(
         self,
@@ -334,6 +335,9 @@ class ModelEvaluator:
 
     def evaluate_model_performance(self, threshold_score: float = 60.0) -> Dict[str, Any]:
         """Runs evaluation across both Standard and Harder benchmark test batches."""
+        if threshold_score in self._cache:
+            return self._cache[threshold_score]
+
         # 1. Standard Benchmark Evaluation (Sanity-Check Split)
         std_merchants = self.ds.get_all_merchants()
         std_gts = self.ds.get_all_ground_truths()
@@ -544,7 +548,7 @@ class ModelEvaluator:
         }
 
         # Return comprehensive report leading with the harder holdout benchmark
-        return {
+        report = {
             "primary_benchmark": "Harder Benchmark (Subtle Patterns - 30% Unseen Holdout)",
             "benchmark_role_note": "Standard benchmark confirms separation of obviously anomalous behavior; the harder out-of-sample holdout is the meaningful performance result.",
             "controlled_benchmark_disclaimer": "All evaluations conducted on controlled synthetic benchmarks. Financial figures represent estimated potential loss mitigation and prototype simulations, not production-measured Razorpay figures.",
@@ -567,6 +571,8 @@ class ModelEvaluator:
             "recovery_sensitivity_analysis": recovery_sensitivity,
             "side_by_side_comparison": side_by_side,
         }
+        self._cache[threshold_score] = report
+        return report
 
     # =========================================================================
     # Workstream 2.1 & 2.2 Multi-Seed Evaluation & Threshold Stability

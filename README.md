@@ -4,23 +4,37 @@
 
 ---
 
-## The Blind Spot
+## About
 
-Traditional payment fraud detection operates at the individual transaction level, evaluating card velocity, 3DS challenges, and IP geolocation in isolation. However, modern merchant-side fraud operates through distributed networks:
+Merchant DNA provides cross-merchant fraud intelligence for payment platforms — behavioral scoring and network analysis that catch what single-merchant tools structurally can't see.
+
+### The Blind Spot
+
+Traditional payment fraud detection operates at the individual transaction level, evaluating buyer card velocity, 3DS challenges, and IP geolocation in isolation. However, modern merchant-side fraud operates through distributed networks:
 
 * **Distributed Syndicate Shells:** Fraud rings register 10 to 50 seemingly legitimate storefronts with valid KYC documents. Each merchant maintains low, steady volumes that stay well below transaction-level velocity tripwires.
 * **Mule Accounts & Rapid Cashouts:** Sleeper accounts remain dormant for 30–60 days to establish baseline history, then process concentrated transaction bursts followed by immediate settlement withdrawal requests before chargebacks arrive.
 * **Aggregator Liability:** When merchant defaults and chargebacks occur, payment aggregators bear financial liability for unrecoverable negative balances.
 
----
-
-## The Approach
+### The Approach
 
 Merchant DNA addresses cross-merchant risk through three interconnected components:
 
 1. **Behavioral Telemetry (60% Weight):** A gradient boosted decision tree model evaluating 30+ merchant-level features, including category ticket deviations, off-peak velocity, buyer concentration (HHI), and settlement turnaround speed.
 2. **Network Graph Analysis (40% Weight):** Bipartite graph modeling and Louvain community detection to uncover shared devices, phone numbers, bank accounts, and UPI VPAs.
 3. **Grounded Synthesis & Bounded Actions:** An AI copilot providing grounded synthesis constrained to structured evidence inputs, coupled with reversible settlement holds that protect liquidity while preserving checkout operations for review.
+
+---
+
+## How It's Monetized
+
+* **Starter (individual/WhatsApp sellers)** — free/nominal trust badge; a network-effect funnel, not a revenue line
+* **Growing SMB** — flat SaaS (₹499–1,999/mo) for a basic dashboard + alerts
+* **Established merchant** — ₹5,000–25,000/mo or 0.02–0.05% bps on instant-settlement volume, for full investigation tooling
+* **Enterprise/large platform** — annual license + volume-based bps, dedicated console and sub-merchant vetting API
+* **Aggregator/bank (B2B2B)** — Risk-as-a-Service, licensed per-query or annually — highest margin
+
+All tiers share one engine; the free tier strengthens the cross-merchant signal every paying tier depends on.
 
 ---
 

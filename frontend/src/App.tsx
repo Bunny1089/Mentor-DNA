@@ -9,6 +9,8 @@ import { MerchantInvestigation } from './pages/MerchantInvestigation';
 import { NetworkExplorer } from './pages/NetworkExplorer';
 import { Evaluation } from './pages/Evaluation';
 import { Simulation } from './pages/Simulation';
+import { About } from './pages/About';
+import { Pricing } from './pages/Pricing';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { getSystemStatus } from './services/api';
 import type { SystemStatus } from './types';
@@ -81,6 +83,16 @@ export function App() {
         return {
           title: 'Live Scenario Simulator',
           subtitle: 'Inject dynamic mule velocity spikes and coordinated syndicates in real time',
+        };
+      case 'about':
+        return {
+          title: 'About Merchant DNA',
+          subtitle: 'Cross-merchant fraud intelligence for payment platforms',
+        };
+      case 'pricing':
+        return {
+          title: 'How It\'s Monetized',
+          subtitle: 'All tiers share one engine; the free tier strengthens the cross-merchant signal every paying tier depends on.',
         };
       default:
         return {
@@ -170,6 +182,10 @@ export function App() {
                     onNavigateToTab={setCurrentTab}
                   />
                 )}
+
+                {currentTab === 'about' && <About />}
+
+                {currentTab === 'pricing' && <Pricing />}
               </ErrorBoundary>
             </div>
           </main>

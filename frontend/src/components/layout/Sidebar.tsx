@@ -8,6 +8,8 @@ import {
   BarChart3,
   Flame,
   ShieldCheck,
+  Info,
+  CreditCard,
 } from 'lucide-react';
 import type { SystemStatus } from '../../types';
 
@@ -39,6 +41,18 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab, syste
       items: [
         { id: 'evaluation', label: 'Evaluation', icon: BarChart3 },
         { id: 'simulation', label: 'Simulation', icon: Flame },
+      ],
+    },
+    {
+      title: 'About',
+      items: [
+        { id: 'about', label: 'Overview', icon: Info },
+      ],
+    },
+    {
+      title: 'Pricing',
+      items: [
+        { id: 'pricing', label: 'Plans', icon: CreditCard },
       ],
     },
   ];
